@@ -16,6 +16,9 @@ interface AppContextType {
     updateLote: (id: number, updates: Partial<Lote>) => void;
     addDespacho: (despacho: Despacho) => void;
     addDonante: (donante: Donante) => void;
+    setLotes: React.Dispatch<React.SetStateAction<Lote[]>>;
+    setDespachos: React.Dispatch<React.SetStateAction<Despacho[]>>;
+    setDonantes: React.Dispatch<React.SetStateAction<Donante[]>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -42,7 +45,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <AppContext.Provider value={{ lotes, despachos, allDonantes, addLote, updateLote, addDespacho, addDonante }}>
+        <AppContext.Provider value={{ lotes, despachos, allDonantes, addLote, updateLote, addDespacho, addDonante, setLotes, setDespachos, setDonantes: setAllDonantes }}>
             {children}
         </AppContext.Provider>
     );

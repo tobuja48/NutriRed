@@ -1,60 +1,76 @@
 # NutriRed 🍃
 
-NutriRed es una plataforma web desarrollada para la gestión inteligente de donaciones de alimentos en Colombia (Bancos de Alimentos). La aplicación permite hacer un seguimiento de las donaciones entrantes, la categorización del inventario con fechas de caducidad, y el despacho optimizado de raciones hacia municipios colombianos prioritarios basado en factores como métricas de vulnerabilidad (IPM) y urgencia de fecha de vencimiento.
+NutriRed es una plataforma web desarrollada para la gestión inteligente de donaciones de alimentos en Colombia (especialmente para Bancos de Alimentos). La aplicación permite hacer un seguimiento integral de las donaciones entrantes, categorizar el inventario con fechas de caducidad, y optimizar el despacho de raciones hacia municipios colombianos prioritarios basado en métricas de vulnerabilidad (IPM) y urgencia de consumo.
 
-## Características Principales 🚀
+## 🚀 Características Principales
 
-- **Panel Principal (Dashboard)**: KPI dinámicos indicando el estado del inventario, total de raciones suministradas e impacto ambiental.
-- **Entrada de Donaciones y Lotes**: Sistema de registro de donaciones con tipado riguroso, que separa las donaciones en "Lotes" con un indicador de vida útil (Crítica, Alta, Media).
-- **Ruteo de Despacho (Algoritmo)**: Lógica automatizada que emite sugerencias de despachos basándose en la urgencia del alimento para evitar el desperdicio, enviándose a municipios necesitados.
-- **Gestor de Donantes**: Directorio de los donantes con tablas de métricas individuales.
-- **Laboratorio de Bases de Datos SQL**: Incluye una consola SQL interactiva embebida (usando `alasql`) conectada al estado real en vivo de las tablas transaccionales de React, incluyendo explorador y diagramado Entidad-Relación (ER) para comprender la normalización de la DB.
-- **Asistente Virtual (IA)**: Chatbot flotante interactivo, accionado por la API de Groq (Llama-3), con conciencia pre-entrenada para dar soporte técnico rápido sobre SQL, Modelo ER o dudas operacionales.
+*   **Panel Principal (Dashboard)**: Visualización en tiempo real con KPIs dinámicos que indican el estado del inventario, total de raciones suministradas e impacto ambiental.
+*   **Gestión de Donaciones y Lotes**: Sistema de registro riguroso que agrupa las donaciones en "Lotes" y asigna un indicador de vida útil (Crítica, Alta, Media) para priorizar su uso.
+*   **Algoritmo de Ruteo y Despacho**: Lógica automatizada que sugiere despachos basándose en la proximidad de caducidad de los alimentos, dirigiéndolos hacia los municipios con mayor Índice de Pobreza Multidimensional para evitar el desperdicio.
+*   **Gestor de Donantes**: Directorio completo de donantes con tablas de métricas de impacto individual.
+*   **Laboratorio de Bases de Datos SQL**: Consola SQL interactiva integrada (`alasql`) que se conecta en tiempo real al estado de la aplicación React. Incluye un explorador y diagrama de Entidad-Relación (ER) para análisis de datos y educación.
+*   **Asistente Virtual con IA (Groq & Llama-3)**: Chatbot flotante interactivo, pre-entrenado para brindar soporte sobre el funcionamiento de la plataforma, consultas SQL y modelos ER.
 
-## Stack Tecnológico 💻
+## 💻 Tech Stack
 
-- **Frontend Core**: React 18 + TypeScript + Vite.
-- **Interfaz y UI**: TailwindCSS v4, shadcn/ui, Radix UI y Lucide React para iconografía.
-- **Gráficos**: Recharts.
-- **Formularios y Validación**: react-hook-form + zod.
-- **Integraciones Nativas**: fetch API (Groq) y alaSQL (para Consola Virtual Local).
-- **Desarrollo**: NPM, ESLint.
+*   **Core**: React 18, TypeScript, Vite
+*   **Estilos y UI**: TailwindCSS v4, shadcn/ui, Radix UI, Lucide React
+*   **Visualización de Datos**: Recharts
+*   **Validación y Formularios**: React Hook Form con Zod
+*   **Base de Datos en Memoria**: AlaSQL
+*   **AI y LLMs**: Groq API (modelo Llama-3)
 
-## Instalación y Uso Local ⚙️
+## ⚙️ Prerrequisitos
 
-1. Clonar este repositorio:
-   ```bash
-   git clone https://github.com/tobuja48/NutriRed.git
-   ```
-2. Entrar al directorio e instalar dependencias:
-   ```bash
-   cd NutriRed
-   npm install
-   ```
-3. Levantar el proyecto en desarrollo:
-   ```bash
-   npm run dev
-   ```
-4. Abrir la URL local servida (usualmente `http://localhost:5173/`).
+Antes de instalar este proyecto localmente, necesitas tener instalado:
+*   [Node.js](https://nodejs.org/) (versión 18.x o superior recomendada)
+*   [npm](https://www.npmjs.com/) (generalmente incluido con Node.js), `yarn` o `pnpm`
+*   [Git](https://git-scm.com/)
 
-*Opcional: Contiene además el archivo `consola-sql.js` ejecutado nativamente en terminal NodeJS, que replica el estado de prueba relacional.*
-```bash
-node consola-sql.js
-```
+Para habilitar las funciones del Asistente Virtual IA, se requiere de una API Key de Groq.
 
-## Estructura del Código
-La carpeta principal está dentro de `src/`, donde destacan:
-- `components/`: Módulos visuales aislados (dashboard, inventario, formularios, `Chatbot`).
-- `pages/`: Pantallas principales de interfaz donde reside el layout. Destaca `ConsolaSQL.tsx`.
-- `data/`: `mockData.ts` provee una capa de datos fijos persistidos mediante memoria temporal.
-- `contexts/`: React Context para el estado global (`AppContext.tsx`).
+## 📥 Instalación
+
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/tobuja48/NutriRed.git
+    cd NutriRed
+    ```
+
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configura las variables de entorno:**
+    Crea un archivo `.env` en la raíz del proyecto y añade tu API Key:
+    ```env
+    VITE_GROQ_API_KEY=tu_api_key_de_groq_aqui
+    ```
+
+4.  **Inicia el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+5.  Abre la aplicación en tu navegador de preferencia:
+    `http://localhost:5173`
+
+*Nota: También puedes acceder a una versión pura por consola de Node ejecutando `node consola-sql.js` (si está en el repositorio).*
+
+## 📂 Estructura del Proyecto y Cómo Funciona
+
+*   `src/components/`: Componentes modulares y reutilizables de UI (ej. Dashboards de métricas, los campos de formularios, Componente de `Chatbot` con groq-sdk, navbars).
+*   `src/pages/`: Vistas de alto nivel y configuración de rutas. Aquí residen páginas complejas integradas como `ConsolaSQL.tsx`, `Donantes.tsx`, `Inventario.tsx`.
+*   `src/contexts/`: Manejo de estado global usando Context API. Particularmente `AppContext.tsx` actúa como origen de la verdad conectando toda la información que consulta el dashboard y las tablas de base de datos en vivio interactivas.
+*   `src/data/`: Datos iniciales (`mockData.ts`) precargados para testear la aplicación y poblar la base de datos en alasql de la terminal.
+
+## 👥 Colaboradores y Equipo de Desarrollo
+
+Este proyecto ha sido desarrollado por:
+*   **Tomas Buitrago** - tbuitragoj@eafit.edu.co
+*   **Santiago Guerra** - sguerrav1@eafit.edu.co
+*   **Miguel Munoz**
 
 ---
-
-## Equipo de Desarrollo 👨‍💻
-- **Tomas Buitrago** - tbuitragoj@eafit.edu.co
-- **Santiago Guerra** - sguerrav1@eafit.edu.co
-- **Miguel Munoz**
-
----
-Elaborado para soluciones sostenibles Cero Hambre y soporte a Bancos de Alimentos 🥬.
+*Diseñado y desarrollado para construir soluciones sostenibles por un objetivo "Cero Hambre" y apoyar activamente a los Bancos de Alimentos 🥬.*
