@@ -50,4 +50,11 @@ La carpeta principal está dentro de `src/`, donde destacan:
 - `contexts/`: React Context para el estado global (`AppContext.tsx`).
 
 ---
+
+## Equipo de Desarrollo 👨‍💻
+- **Tomas Buitrago** - tbuitragoj@eafit.edu.co
+- **Santiago Guerra** - sguerrav1@eafit.edu.co
+- **Miguel Munoz**
+
+---
 Elaborado para soluciones sostenibles Cero Hambre y soporte a Bancos de Alimentos 🥬.
