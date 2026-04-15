@@ -70,7 +70,7 @@ Para habilitar las funciones del Asistente Virtual IA, se requiere de una API Ke
 Este proyecto ha sido desarrollado por:
 *   **Tomas Buitrago** - tbuitragoj@eafit.edu.co
 *   **Santiago Guerra** - sguerrav1@eafit.edu.co
-*   **Miguel Munoz**
+*   **Miguel Munoz**    -  mmunozj4@eafit.edu.co
 
 ---
 *Diseñado y desarrollado para construir soluciones sostenibles por un objetivo "Cero Hambre" y apoyar activamente a los Bancos de Alimentos 🥬.*
