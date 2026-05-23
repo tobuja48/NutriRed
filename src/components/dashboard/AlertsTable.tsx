@@ -66,7 +66,7 @@ export default function AlertsTable() {
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                onClick={() => navigate('/despachos', { state: { loteId: lote.id } })}
+                                                onClick={() => navigate('/banco/despachos', { state: { loteId: lote.id } })}
                                                 className="text-primary-600 hover:text-primary-700"
                                             >
                                                 <Send className="w-4 h-4 mr-1" />

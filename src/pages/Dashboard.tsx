@@ -17,7 +17,7 @@ export default function Dashboard() {
                 title="Panel de Control"
                 subtitle={formatFechaLarga(new Date())}
                 action={
-                    <Button onClick={() => navigate('/donaciones')}>
+                    <Button onClick={() => navigate('/banco/donaciones')}>
                         <Plus className="w-4 h-4 mr-2" />
                         Registrar donación
                     </Button>

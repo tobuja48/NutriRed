@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import {
     lotes as initialLotes,
     despachos as initialDespachos,
@@ -24,9 +24,30 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-    const [lotes, setLotes] = useState<Lote[]>(initialLotes);
-    const [despachos, setDespachos] = useState<Despacho[]>(initialDespachos);
-    const [allDonantes, setAllDonantes] = useState<Donante[]>(initialDonantes);
+    const [lotes, setLotes] = useState<Lote[]>(() => {
+        const saved = localStorage.getItem('nutrired_lotes');
+        return saved ? JSON.parse(saved) : initialLotes;
+    });
+    const [despachos, setDespachos] = useState<Despacho[]>(() => {
+        const saved = localStorage.getItem('nutrired_despachos');
+        return saved ? JSON.parse(saved) : initialDespachos;
+    });
+    const [allDonantes, setAllDonantes] = useState<Donante[]>(() => {
+        const saved = localStorage.getItem('nutrired_donantes');
+        return saved ? JSON.parse(saved) : initialDonantes;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('nutrired_lotes', JSON.stringify(lotes));
+    }, [lotes]);
+
+    useEffect(() => {
+        localStorage.setItem('nutrired_despachos', JSON.stringify(despachos));
+    }, [despachos]);
+
+    useEffect(() => {
+        localStorage.setItem('nutrired_donantes', JSON.stringify(allDonantes));
+    }, [allDonantes]);
 
     const addLote = useCallback((lote: Lote) => {
         setLotes(prev => [...prev, lote]);

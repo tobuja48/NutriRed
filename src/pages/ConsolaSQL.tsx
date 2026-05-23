@@ -261,6 +261,7 @@ export default function ConsolaSQL() {
             return;
         }
         try {
+            alasql('USE alasql');
             ['donantes', 'lotes', 'despachos', 'municipios', 'categorias', 'productos'].forEach(t => alasql(`DROP TABLE IF EXISTS ${t}`));
 
             alasql('CREATE TABLE donantes');
@@ -285,11 +286,14 @@ export default function ConsolaSQL() {
             updateRawView(selectedTable);
         } catch (err: any) {
             console.error('Error sincronizando DB:', err);
+        } finally {
+            try { alasql('USE nutrired_db'); } catch { /* ignore */ }
         }
     }, [allDonantes, lotes, despachos, selectedTable]);
 
     const updateRawView = (tableName: string) => {
         try {
+            alasql('USE alasql');
             const data = alasql(`SELECT * FROM ${tableName}`);
             setRawTableData(data);
             if (data.length > 0) {
@@ -300,6 +304,8 @@ export default function ConsolaSQL() {
         } catch {
             setRawTableData([]);
             setRawTableColumns([]);
+        } finally {
+            try { alasql('USE nutrired_db'); } catch { /* ignore */ }
         }
     };
 
@@ -315,6 +321,7 @@ export default function ConsolaSQL() {
         setColumns([]);
 
         try {
+            alasql('USE alasql');
             const queries = query.split(';').map(q => q.trim()).filter(Boolean);
             let lastRes: any = null;
             const DML_REGEX = /^\s*(INSERT|UPDATE|DELETE|ALTER|DROP|TRUNCATE)/i;
@@ -354,6 +361,8 @@ export default function ConsolaSQL() {
         } catch (err: any) {
             setError(err.message);
             toast.error('Error de sintaxis SQL');
+        } finally {
+            try { alasql('USE nutrired_db'); } catch { /* ignore */ }
         }
     };
 
